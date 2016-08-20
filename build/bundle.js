@@ -150,7 +150,7 @@ module.exports =
 		"author": "saltuka",
 		"description": "This extension helps to list rules on clients",
 		"type": "application",
-		"repository": "https://github.com/saltukalakus/auth0-extension-boilerplate-with-api",
+		"repository": "https://github.com/saltukalakus/auth0-list-rules-on-clients",
 		"keywords": [
 			"auth0",
 			"extension"
