@@ -1,0 +1,13 @@
+{
+  "title": "Auth0 Extension to List Rules on Clients",
+  "name": "auth0-list-rules-on-clients",
+  "version": "0.3.0",
+  "author": "saltuka",
+  "description": "This extension helps to list rules on clients",
+  "type": "application",
+  "repository": "https://github.com/saltukalakus/auth0-extension-boilerplate-with-api",
+  "keywords": [
+    "auth0",
+    "extension"
+  ]
+}
