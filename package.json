@@ -1,6 +1,6 @@
 {
   "name": "auth0-list-rules-on-clients",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "This extension helps to list rules on clients",
   "main": "index.js",
   "scripts": {
