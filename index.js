@@ -5,6 +5,7 @@ var api        = express.Router();
 var jwtExpress = require('express-jwt');
 var auth0      = require('auth0-oauth2-express');
 var metadata   = require('./webtask.json');
+var template = require('./templates/index.jade');
 
 app.use(require('./middleware/develop.js'));
 
@@ -25,39 +26,10 @@ app.use(auth0({
 }));
 
 app.get('/', function (req, res) {
-  var view = [
-    '<html>',
-    '  <head>',
-    '    <title>Auth0 Extension</title>',
-    '    <script type="text/javascript">',
-    '       if (!sessionStorage.getItem("token")) {',
-    '         window.location.href = "'+res.locals.baseUrl+'/login";',
-    '       }',
-    '    </script>',
-    '  </head>',
-    '  <body>',
-    '    <p><strong>Token</strong></p>',
-    '    <textarea rows="10" cols="100" id="token"></textarea>',
-    '    <script type="text/javascript">',
-    '       var token = sessionStorage.getItem("token");',
-    '       if (token) {',
-    '         document.getElementById("token").innerText = token;',
-    '       }',
-    '    </script>',
-    '    <p><strong>API Token</strong></p>',
-    '    <textarea rows="10" cols="100" id="apiToken"></textarea>',
-    '    <script type="text/javascript">',
-    '       var apiToken = sessionStorage.getItem("apiToken");',
-    '       if (apiToken) {',
-    '         document.getElementById("apiToken").innerText = apiToken;',
-    '       }',
-    '    </script>',
-    '  </body>',
-    '</html>'
-  ].join('\n');
-
-  res.header("Content-Type", 'text/html');
-  res.status(200).send(view);
+    res.header("Content-Type", 'text/html');
+    res.status(200).send(template({
+        baseUrl: res.locals.baseUrl
+    }));
 });
 
 // This endpoint would be called by webtask-gallery to dicover your metadata

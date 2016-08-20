@@ -4,8 +4,8 @@
   "description": "This extension helps to list rules on clients",
   "main": "index.js",
   "scripts": {
-    "start": "wt-bundle server.js -o ./build/bundle.js && node ./build/bundle.js",
-    "bundle": "wt-bundle webtask.js -o ./build/bundle.js"
+    "start": "webpack --config webpack.config.js && node build/bundle.js",
+    "bundle": "webpack --config webpack.wt.config.js"
   },
   "keywords": [
     "auth0",
@@ -20,5 +20,14 @@
     "express-jwt": "3.1.0",
     "express-unless": "^0.3.0",
     "webtask-tools": "1.3.0"
+  },
+  "devDependencies": {
+      "jade": "^1.11.0",
+      "jade-loader": "^0.8.0",
+      "json-loader": "^0.5.4",
+      "lodash": "^4.3.0",
+      "react": "^0.14.3",
+      "request-promise": "^2.0.0",
+      "webpack": "^1.12.9"
   }
 }
