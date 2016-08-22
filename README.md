@@ -100,9 +100,9 @@ according to your operating system. After that, follow the steps for local and r
 ### Local tests
 * Copy sample_config.json as config.json in the same folder. Update AUTH0_DOMAIN setting in config.json with your domain path. It may be something like YourUserName.auth0.com Note that based on your account location auth0.com may not work for you. 
 
-'''bash
+```bash
      $ cp sample_config.json config.json
-'''
+```
 
 * Build and run the application
 
@@ -129,7 +129,7 @@ according to your operating system. After that, follow the steps for local and r
 
 * Deploy the application
 
-Commit your changes to your GitHub account. Run your extension following <b>Deploy the Extension</b> section above. Don't forget to use your GitHub repository path.
+Commit your changes to your GitHub account. Run your extension following <b>Deploy the Extension</b> section above.
 
 ## TODO
 * Dynamically evaluate rule's code with some clever algorithm to detect behaviour. So that mixture of whitelist, 
