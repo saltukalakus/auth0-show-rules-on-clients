@@ -26,10 +26,10 @@ reasonable to apply some rules only to some of the clients (whitelist). Implemen
 
 For analysis below patern matching rules are applied in extension. There are still many other alternative ways for comparing clienId/Name in Javascript. For extension application to show relations properly, your rules must match any of below paterns.
 
-* context.clientName|clientID === | !== | == | != 'expectedID|name'
-* context['clientName|clientID'] === | !== | == | != 'expectedID|name'
-* 'expectedID|name' === | !== | == | != context.clientName|clientID
-* 'expectedID|name' === | !== | == | != context['clientName|clientID']
+1. context.clientName|clientID === | !== | == | != 'expectedID|name'
+2. context['clientName|clientID'] === | !== | == | != 'expectedID|name'
+3. 'expectedID|name' === | !== | == | != context.clientName|clientID
+4. 'expectedID|name' === | !== | == | != context['clientName|clientID']
 
 ### Sample for valid whitelist rule. Skip code block if the client is not in whitelist
 
