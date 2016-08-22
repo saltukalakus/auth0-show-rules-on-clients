@@ -4,7 +4,7 @@
   "description": "This extension helps to list rules on clients",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --config webpack.config.js && node build/local_bundle.js",
+    "start": "webpack --config webpack.config.js && node build/local.js",
     "bundle": "webpack --config webpack.wt.config.js"
   },
   "keywords": [

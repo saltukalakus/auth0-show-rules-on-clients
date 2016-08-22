@@ -6,7 +6,7 @@ and helps you to view relation between clients and rules.
 
 [PUT PICTURE HERE]
 
-## Installation
+## Deploy the Extension
 1. Go to [Auth0 Extensions](https://manage.auth0.com/#/extensions)
 2. Click on `+ Create Extension`
 3. Fill in the textbox with `https://github.com/saltukalakus/auth0-list-rules-on-clients`
@@ -14,12 +14,11 @@ and helps you to view relation between clients and rules.
 5. Finally, click on `install`
 
 ## Features (I may move to TODO some of them. They are target now)
-* Rules view lists clients for each rule.
-* Clients view lists rules for each client.
-* Clickable rules & clients details in each view mode.
-* Filter, search based on rules and clients.
-* Export rule-client table as CSV file. 
-* Covers a lot of possible whitelist rules with tests. Please check "Supported List of Valid Whitelists" section below. 
+* View clients for each rule.
+* View rules for each client.
+* Clickable rule & client details in each view mode.
+* Filter, search rules and clients.
+* Export rules-clients table as a CSV file. 
 
 ## How It Works
 In [Auth0](https://auth0.com) dashboard, enabled rules are applied on every client by default. However, it is quite
@@ -69,17 +68,51 @@ If any of your rules has some kind of blacklist logic, extension will not be abl
 Another important limitation is if you are using logic whitelist similar logic to implement some partially applied 
 
 
-## Supported List of Valid Whitelists
+## Supported List of Valid Whitelist Logics
 
 
 
 ## Development
-Fork the project in GitHub
+Fork the project in your GitHub account. Install <b>Node.js</b> and <b>npm</n> applications. Installation steps differs 
+according to your operating system. 
 
-### Local test
+Follow the steps for local and remote tests as below.
 
-### Remote test
-Don't forget to commit ./build/bundle.js 
+### Local tests
+1. Copy sample_config.json as config.json in the same folder. Update AUTH0_DOMAIN setting in config.json with your domain path. 
+It may be something like YourUserName.auth0.com Note that based on your account location auth0.com may not work for you. 
+
+'''bash
+     $ cp sample_config.json config.json
+'''
+
+2. Build and run the application
+
+'''bash
+    $ cd ./test
+    $ npm install # mandatory only for the first time
+    $ npm run bundle
+    $ cd ..
+    $ npm install # mandatory only for the first time
+    $ npm start
+'''
+### Remote tests
+
+1. Build the application
+
+'''bash
+    $ cd ./test
+    $ npm install # mandatory only for the first time
+    $ npm run bundle
+    $ cd ..
+    $ npm install # mandatory only for the first time
+    $ npm run bundle
+'''
+
+2. Deploy the application
+
+Commit your changes to your GitHub account. Run your extension following <b>Deploy the Extension</b> section.
+Don't forget to use your GitHub repository path.
 
 ## TODO
 * Dynamically evaluate rule's code with some clever algorithm to detect behaviour. So that mixture of whitelist, 
