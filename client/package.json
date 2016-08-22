@@ -9,7 +9,7 @@
   "author": "Saltuk Alakus <saltukalakus@gmail.com>",
   "main": "app.js",
   "scripts": {
-      "bundle": "gulp build"
+    "bundle": "gulp build"
   },
   "dependencies": {
     "es6-promise": "^3.2.1",
@@ -18,7 +18,8 @@
   "devDependencies": {
     "browserify": "latest",
     "gulp": "latest",
-    "gulp-browserify": "latest"
+    "gulp-browserify": "latest",
+    "gulp-minify": "0.0.14"
   },
   "repository": {
     "type": "git",

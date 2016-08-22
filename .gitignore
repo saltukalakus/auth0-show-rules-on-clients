@@ -34,4 +34,6 @@ npm-debug.log
 # Config file
 config.json
 build/app.js
+build/app-debug.js
 build/local.js
+client/build/app.js

@@ -5,7 +5,7 @@ var server = null;
 const getServer = function(req, res){
     if (!server) {
         nconf.defaults({
-            AUTH0_DOMAIN: req.webtaskContext.secrets.AUTH0_DOMAIN,
+            AUTH0_DOMAIN: req.webtaskContext.secrets.AUTH0_DOMAIN || 'saltuka.auth0.com',
             EXTENSION_SECRET: req.webtaskContext.secrets.EXTENSION_SECRET,
             WT_URL: req.webtaskContext.secrets.WT_URL,
             NODE_ENV: 'development',
