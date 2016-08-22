@@ -24,13 +24,12 @@ and helps you to view relation between clients and rules.
 In [Auth0](https://auth0.com) dashboard, activated rules are applied on every client by default. However, it is quite
 logical to apply some rules only to some of the clients (whitelist). Implementing clientID or clientName based whitelist logic can make this possible. Below you can find two sample whitelist code piece. This extension assumes all or some of your rules have whitelist logic. With statically analysing your rules, this extension can determine which rule is used for any client and show this relation via it's user interface.
 
-### Rule method - 1
-Skip code block if the client is not in whitelist
+### Sample for valid whitelist rule. Skip code block if the client is not in whitelist
 
 ```javascript
 function (user, context, callback) {
     if (context.clientName === 'Client1ToWhiteList') || 
-       (context.clientName === 'Client2ToWhiteList') ||
+       ('Client2ToWhiteList' === context.clientName) ||
        (context.clientID === '3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B'){
        
         // Write rule logic in this block
@@ -41,13 +40,12 @@ function (user, context, callback) {
 }
 ```
 
-### Rule method - 2
-Early return if the client is not in whitelist
+### Sample for valid whitelist rule. Early return if the client is not in whitelist
 
 ```javascript
 function (user, context, callback) {
     if (context.clientName !== 'Client1ToWhiteList') && 
-       (context.clientName !== 'Client2ToWhiteList') &&
+       ('Client2ToWhiteList' !== context.clientName) &&
        (context.clientID !== '3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B') {
        
         // Returns without any rule action  
@@ -61,19 +59,36 @@ function (user, context, callback) {
 ```
 
 ## Limitations
-If any of your rules have some kind of logic like "apply this rule if not these clients" (blacklist), extension will not be able to list the relations correctly for that rule.
+In any of your rules, if you have some kind of logic like "apply this rule if not these clients" (blacklist), extension will not be able to list the relations correctly for that rule. Also using comparison operators (==, ===, !=, !==) with clientID or clientName against existing clients is not allowed for other purposes. Because this will mix with whitelist rule checking of the extension and cause incorrect relation.
 
-### Sample
+### Sample for blacklist
 ```javascript
 function (user, context, callback) {
     if (context.clientName !== 'Client1ToBlackList') {
-        // Writing rule logic after this line which literally means apply 
-        // rule to all clients other than Client1ToBlackList
+        // Writing rule logic after this line literally means apply rule to all clients 
+        // other than Client1ToBlackList. Extension will think that this rule is applied
+        // only to Client1ToBlackList
+        
         return callback(null, user, context);
     }
     
     // Returns without any rule action 
     
+    callback(null, user, context);
+}
+```
+
+### Sample for invalid use of client info
+```javascript
+function (user, context, callback) {
+    // Do some rule checking
+    
+    if (context.clientName === 'Client2') {
+       // In Client2 do some additional checking. This is also not allowed! Extesion will 
+       // think that this rule is applied only to Client2. Actually it is running for all clients.
+    }
+    
+    // Do some more rule checking
     callback(null, user, context);
 }
 ```
