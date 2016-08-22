@@ -22,7 +22,14 @@ and helps you to view relation between clients and rules.
 
 ## How It Works
 In [Auth0](https://auth0.com) dashboard, activated rules are applied on every client by default. However, it is quite
-logical to apply some rules only to some of the clients (whitelist). Implementing clientID or clientName based whitelist logic can make this possible. Below you can find two sample whitelist code pieces. This extension assumes all or some of your rules have whitelist logic. With statically analysing your rules, this extension can determine which rule is used for any client and show this relation via it's user interface.
+reasonable to apply some rules only to some of the clients (whitelist). Implementing clientID or clientName based whitelist logic can make this possible. Extension assumes all or some of your rules have whitelist logic. By analysing your rules, extension can determine which rules are used for any client and show their relation via it's user interface. 
+
+For analysis below patern matching rules are applied in extension. There are still many other alternative ways for comparing clienId/Name in Javascript. For extension application to show relations properly, your rules must match any of below paterns.
+
+* context.clientName|clientID === | !== | == | != 'expectedID|name'
+* context['clientName|clientID'] === | !== | == | != 'expectedID|name'
+* 'expectedID|name' === | !== | == | != context.clientName|clientID
+* 'expectedID|name' === | !== | == | != context['clientName|clientID']
 
 ### Sample for valid whitelist rule. Skip code block if the client is not in whitelist
 
@@ -30,6 +37,7 @@ logical to apply some rules only to some of the clients (whitelist). Implementin
 function (user, context, callback) {
     if (context.clientName === 'Client1ToWhiteList') || 
        ('Client2ToWhiteList' === context.clientName) ||
+       (context['clientName'] === 'Client3ToWhiteList') || 
        (context.clientID === '3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B'){
        
         // Write rule logic in this block
@@ -46,6 +54,7 @@ function (user, context, callback) {
 function (user, context, callback) {
     if (context.clientName !== 'Client1ToWhiteList') && 
        ('Client2ToWhiteList' !== context.clientName) &&
+       (context["clientName"] === 'Client3ToWhiteList') &&
        (context.clientID !== '3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B') {
        
         // Returns without any rule action  
@@ -59,7 +68,7 @@ function (user, context, callback) {
 ```
 
 ## Limitations
-In any of your rules, if you have some kind of logic like "apply this rule if not these clients" (blacklist), extension will not be able to list the relations correctly for that rule. Also using comparison operators (==, ===, !=, !==) with clientID or clientName against existing clients is not allowed for other purposes. Because this will mix with whitelist rule checking of the extension and cause incorrect relation.
+In any of your rules, if you have some kind of logic like "apply this rule if not these clients" (blacklist), extension will not be able to list the relations correctly for that rule. Also using comparison operators (==, ===, !=, !==) with clientId or clientName against existing clients is not allowed for other purposes. Because this will mix with whitelist rule checking of the extension and cause incorrect relation.   
 
 ### Sample for blacklist
 ```javascript
