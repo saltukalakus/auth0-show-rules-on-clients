@@ -22,7 +22,7 @@ and helps you to view relation between clients and rules.
 
 ## How It Works
 In [Auth0](https://auth0.com) dashboard, activated rules are applied on every client by default. However, it is quite
-logical to apply some rules only to some of the clients (whitelist). Implementing clientID or clientName based whitelist logic can make this possible. Below you can find two sample whitelist code piece. This extension assumes all or some of your rules have whitelist logic. With statically analysing your rules, this extension can determine which rule is used for any client and show this relation via it's user interface.
+logical to apply some rules only to some of the clients (whitelist). Implementing clientID or clientName based whitelist logic can make this possible. Below you can find two sample whitelist code pieces. This extension assumes all or some of your rules have whitelist logic. With statically analysing your rules, this extension can determine which rule is used for any client and show this relation via it's user interface.
 
 ### Sample for valid whitelist rule. Skip code block if the client is not in whitelist
 
