@@ -1,4 +1,4 @@
-## Auth0 List Rules on Clients Extension
+## Auth0 Extension to List Rules on Clients
 
 If you are already using [Auth0](https://auth0.com) services, you should be familiar with [Auth0](https://auth0.com)'s 
 management dashboard, clients (A.K.A. applications) and rules. This little extensions extends the management dashboard 
