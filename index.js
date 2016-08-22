@@ -1,56 +1,31 @@
-var express    = require('express');
-var Webtask    = require('webtask-tools');
-var app        = express();
-var api        = express.Router();
-var jwtExpress = require('express-jwt');
-var auth0      = require('auth0-oauth2-express');
-var metadata   = require('./webtask.json');
+var express  = require('express');
+var auth0    = require('auth0-oauth2-express');
+var Webtask  = require('webtask-tools');
+var nconf    = require('nconf');
+var app      = express();
 var template = require('./templates/index.jade');
-
-app.use(require('./middleware/develop.js'));
-
-app.use('/api', api);
+var metadata = require('./webtask.json');
 
 app.use(auth0({
-  scopes: 'read:connections read:clients read:rules',
-  apiToken: {
-    payload: function (req, res, next) {
-      // Add extra info to the API token
-      req.userInfo.MoreInfo = "More Info";
-      next();
-    },
-    secret: function (req) {
-      return req.webtaskContext.data.EXTENSION_SECRET;
-    }
-  }
-}));
+    clientName: 'Auth0 Extension to List Rules on Clients',
+    scopes: 'read:clients read:rules'
+  })
+);
 
 app.get('/', function (req, res) {
+    var config = {
+        AUTH0_DOMAIN: nconf.get("AUTH0_DOMAIN")
+    };
     res.header("Content-Type", 'text/html');
     res.status(200).send(template({
-        baseUrl: res.locals.baseUrl
+        baseUrl: res.locals.baseUrl,
+        windowConfig: JSON.stringify(config)
     }));
 });
 
-// This endpoint would be called by webtask-gallery to dicover your metadata
+// This endpoint would be called by webtask-gallery to discover your metadata
 app.get('/meta', function (req, res) {
-  res.status(200).send(metadata);
+    res.status(200).send(metadata);
 });
-
-////////////// API //////////////
-api.use(jwtExpress({
-  secret: function(req, payload, done) {
-    done(null, req.webtaskContext.data.EXTENSION_SECRET);
-  }
-}));
-
-api.get('/secured', function (req, res) {
-  if (!req.user) {
-    return res.sendStatus(401);
-  }
-
-  res.status(200).send({user: req.user});
-});
-////////////// API //////////////
 
 module.exports = app;
