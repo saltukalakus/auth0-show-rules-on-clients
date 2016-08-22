@@ -2,7 +2,8 @@ require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
 $(window).ready(function() {
-    var getClients = fetch('https://saltuka.auth0.com/api/v2/clients', {
+    console.log('https://' + window.config.AUTH0_DOMAIN + '/api/v2/clients');
+    var getClients = fetch('https://' + window.config.AUTH0_DOMAIN + '/api/v2/clients', {
         headers: {
             'Authorization': 'Bearer ' + sessionStorage.getItem('token')
         },

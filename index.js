@@ -13,13 +13,10 @@ app.use(auth0({
 );
 
 app.get('/', function (req, res) {
-    var config = {
-        AUTH0_DOMAIN: nconf.get("AUTH0_DOMAIN")
-    };
     res.header("Content-Type", 'text/html');
     res.status(200).send(template({
         baseUrl: res.locals.baseUrl,
-        windowConfig: JSON.stringify(config)
+        auth0Domain: nconf.get("AUTH0_DOMAIN")
     }));
 });
 

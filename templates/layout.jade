@@ -27,6 +27,7 @@ html
       if (!sessionStorage.getItem("token")) {
         window.location.href = '#{baseUrl}/login';
       }
+      window.config = {'AUTH0_DOMAIN': '#{auth0Domain}'};
 
   body.a0-extension
     header.dashboard-header

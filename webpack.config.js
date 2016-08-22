@@ -26,7 +26,7 @@ module.exports = {
   externals: readExternals(),
   output: {
     path: './build',
-    filename: 'bundle.js'
+    filename: 'local_bundle.js'
   },
   module: {
     loaders: [

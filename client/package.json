@@ -8,6 +8,9 @@
   ],
   "author": "Saltuk Alakus <saltukalakus@gmail.com>",
   "main": "app.js",
+  "scripts": {
+      "bundle": "gulp build"
+  },
   "dependencies": {
     "es6-promise": "^3.2.1",
     "isomorphic-fetch": "^2.2.1"

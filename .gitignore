@@ -34,3 +34,4 @@ npm-debug.log
 # Config file
 config.json
 build/app.js
+build/local_bundle.js
