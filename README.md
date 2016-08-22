@@ -79,7 +79,7 @@ function (user, context, callback) {
 ```
 
 ## Development
-Fork the project in your GitHub account. Install <b>Node.js</b> and <b>npm</b> applications. Installation steps differs 
+Fork the project in your GitHub account. Install <b>Node.js</b> and <b>npm</b> applications. Installation steps differ 
 according to your operating system. Follow the steps for local and remote tests as below.
 
 ### Local tests
