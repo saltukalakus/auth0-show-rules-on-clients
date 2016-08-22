@@ -1,0 +1,24 @@
+{
+  "name": "auth0-list-rules-on-clients-fe",
+  "version": "0.1.0",
+  "description": "Frontend application for list rules on clients extension",
+  "keywords": [
+    "auth0",
+    "extension"
+  ],
+  "author": "Saltuk Alakus <saltukalakus@gmail.com>",
+  "main": "app.js",
+  "dependencies": {
+    "es6-promise": "^3.2.1",
+    "isomorphic-fetch": "^2.2.1"
+  },
+  "devDependencies": {
+    "browserify": "latest",
+    "gulp": "latest",
+    "gulp-browserify": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/saltukalakus/auth0-list-rules-on-clients"
+  }
+}

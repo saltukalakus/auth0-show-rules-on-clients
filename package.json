@@ -11,7 +11,7 @@
     "auth0",
     "extension"
   ],
-  "author": "Saltuk Alakus",
+  "author": "Saltuk Alakus <saltukalakus@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "auth0-oauth2-express": "^1.1.8",
@@ -28,5 +28,9 @@
     "react": "^0.14.3",
     "request-promise": "^2.0.0",
     "webpack": "^1.12.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/saltukalakus/auth0-list-rules-on-clients"
   }
 }

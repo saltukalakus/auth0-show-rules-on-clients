@@ -25,6 +25,7 @@ build/Release
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
+./client/node_modules
 
 .DS_Store
 
@@ -32,3 +33,4 @@ npm-debug.log
 
 # Config file
 config.json
+build/app.js

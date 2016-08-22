@@ -7,7 +7,7 @@ var template = require('./templates/index.jade');
 var metadata = require('./webtask.json');
 
 app.use(auth0({
-    clientName: 'Auth0 Extension to List Rules on Clients',
+    clientName: 'Auth0 List Rules on Clients',
     scopes: 'read:clients read:rules'
   })
 );
