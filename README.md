@@ -22,16 +22,16 @@ and helps you to view relation between clients and rules.
 
 ## How It Works
 In [Auth0](https://auth0.com) dashboard, activated rules are applied on every client by default. However, it is quite
-logical to apply some rules only to some of the clients (whitelist). Inserting clientID or clientName based whitelist logic to rules script can make it possible to apply rules  only to some selected clients. Below you can find sample two ways of whitelist behaviour. This extension assumes all rules have whitelist logic, then will happily detect and show rules vs clients relation correctly.
+logical to apply some rules only to some of the clients (whitelist). Implementing clientID or clientName based whitelist logic can make this possible. Below you can find two sample whitelist code piece. This extension assumes all or some of your rules have whitelist logic. With statically analysing your rules, this extension can determine which rule is used for any client and show this relation via it's user interface.
 
-### Rule type - 1
-Skip code if the client is not in whitelist
+### Rule method - 1
+Skip code block if the client is not in whitelist
 
 ```javascript
 function (user, context, callback) {
     if (context.clientName === 'Client1ToWhiteList') || 
        (context.clientName === 'Client2ToWhiteList') ||
-       (context.clientName === 'Client3ToWhiteList'){
+       (context.clientID === '3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B'){
        
         // Write rule logic in this block
     }
@@ -41,14 +41,14 @@ function (user, context, callback) {
 }
 ```
 
-### Rule type - 2
+### Rule method - 2
 Early return if the client is not in whitelist
 
 ```javascript
 function (user, context, callback) {
     if (context.clientName !== 'Client1ToWhiteList') && 
        (context.clientName !== 'Client2ToWhiteList') &&
-       (context.clientName !== 'Client3ToWhiteList') {
+       (context.clientID !== '3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B') {
        
         // Returns without any rule action  
         return callback(null, user, context);
@@ -61,7 +61,7 @@ function (user, context, callback) {
 ```
 
 ## Limitations
-If any of your rules has some kind of logic like apply this rule if not these clients (blacklist), extension will not be able to list the relations correctly for that rule.
+If any of your rules have some kind of logic like "apply this rule if not these clients" (blacklist), extension will not be able to list the relations correctly for that rule.
 
 ### Sample
 ```javascript
@@ -79,8 +79,8 @@ function (user, context, callback) {
 ```
 
 ## Development
-Fork the project in your GitHub account. Install <b>Node.js</b> and <b>npm</b> applications. Installation steps differ 
-according to your operating system. Follow the steps for local and remote tests as below.
+Fork the project in your GitHub account. Install <b>Node.js</b> and <b>npm</b>. Installation steps differ 
+according to your operating system. After that, follow the steps for local and remote tests as below.
 
 ### Local tests
 * Copy sample_config.json as config.json in the same folder. Update AUTH0_DOMAIN setting in config.json with your domain path. It may be something like YourUserName.auth0.com Note that based on your account location auth0.com may not work for you. 
