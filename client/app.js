@@ -1,19 +1,28 @@
-require('es6-promise').polyfill();
-require('isomorphic-fetch');
-
 $(window).ready(function() {
     console.log('https://' + window.config.AUTH0_DOMAIN + '/api/v2/clients');
-    var getClients = fetch('https://' + window.config.AUTH0_DOMAIN + '/api/v2/clients', {
-        headers: {
-            'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-        },
-        method: 'GET',
-        cache: false
-    });
 
-    getClients.then(function (response) {
-        response.json().then(function (foos) {
-            console.log('the clients:', foos);
+    $.when( $.ajax
+        ({
+            type: "GET",
+            url: 'https://' + window.config.AUTH0_DOMAIN + '/api/v2/clients',
+            dataType: 'json',
+            data: '{}',
+            beforeSend: function (xhr){
+                xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
+            }
+        }),
+
+        $.ajax
+        ({
+            type: "GET",
+            url: 'https://' + window.config.AUTH0_DOMAIN + '/api/v2/rules',
+            dataType: 'json',
+            data: '{}',
+            beforeSend: function (xhr){
+                xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
+            }
+        })).done(function (clients, rules) {
+            console.log(clients);
+            console.log(rules);
         });
-    });
 });
