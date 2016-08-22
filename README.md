@@ -67,7 +67,8 @@ If any of your rules has some kind of logic like apply this rule if not these cl
 ```javascript
 function (user, context, callback) {
     if (context.clientName !== 'Client1ToBlackList') {
-        // Writing rule logic after this line which literally means apply rule to all clients other than Client1ToBlackList
+        // Writing rule logic after this line which literally means apply 
+        // rule to all clients other than Client1ToBlackList
         return callback(null, user, context);
     }
     
