@@ -111,16 +111,15 @@ according to your operating system. After that, follow the steps for local and r
 
 ```bash
      $ cp sample_config.json config.json
+     $ cd ./client
+     $ npm install
+     $ cd ..
+     $ npm install
 ```
 
 * Build and run the application
 
 ```bash
-    $ cd ./test
-    $ npm install # mandatory only for the first time
-    $ npm run bundle
-    $ cd ..
-    $ npm install # mandatory only for the first time
     $ npm start
 ```
 ### Remote tests
@@ -128,11 +127,6 @@ according to your operating system. After that, follow the steps for local and r
 * Build the application
 
 ```bash
-    $ cd ./test
-    $ npm install # mandatory only for the first time
-    $ npm run bundle
-    $ cd ..
-    $ npm install # mandatory only for the first time
     $ npm run bundle
 ```
 
