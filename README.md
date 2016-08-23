@@ -31,8 +31,8 @@ For the extension application to show relations properly, your rules must match 
 3. 'expectedID'|'name' === | !== | == | != context.clientName|clientID
 4. 'expectedID'|'name' === | !== | == | != context['clientName'|'clientID']
 
-(*) | symbol denotes alternative valid options. 
-(*) Space and double quotes are also supported in your whitelist expression.
+(\*) <b>|</b> symbol denotes alternative valid options. <br>
+(\*) Space and double quotes are also supported in your whitelist expressions.
 
 Sample for valid whitelist rule with skip code block if the client is not in whitelist.
 
@@ -139,7 +139,8 @@ function (user, context, callback) {
 
 function (user, ctx, callback) {
 
-    // Extension search for keyword 'context' but 'ctx' is used and this cause extension to fail in matching
+    // Extension search for keyword 'context' but 'ctx' is used and this cause extension 
+    // to fail in matching
     if (ctx.clientName === 'Client2') {
         // Your rule logic
     }
