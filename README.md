@@ -78,15 +78,16 @@ function (user, context, callback) {
     // Do some rule checking
     
     // Checking ClientID with variable assignment will lead to extension to ignore the logic.
-    var myClientID =  3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B;
+    var myClientID =  '3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B';
       
     if (context.clientID === myClientID) {
-        // Your specific rule logic for client 3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B
+        // Your specific rule logic for client '3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B'
     }
     
     // Do some more rule checking
     callback(null, user, context);
 }
+```
 
 ## Limitations
 In your rules, if you have logic like "apply this rule if not these clients" (blacklist), this extension will not be able to list the relations correctly for that rules.   
@@ -128,7 +129,7 @@ Your whitelist rules should stick with patterns described in "How It Works" sect
 function (user, context, callback) {
 
     // Checking ClientID with variable assignment will lead to extension to fail in matching
-    var myClientID =  3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B;
+    var myClientID = '3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B';
     if (context.clientID === myClientID) {
         // Your rule logic
     }
