@@ -25,8 +25,6 @@ $(window).ready(function() {
                 xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
             }
         })).done(function (clients, rules) {
-            console.log(clients);
-            console.log(rules);
-            view(clients, rules, 'hi');
+            view(clients[0], rules[0], '#listView');
         });
 });

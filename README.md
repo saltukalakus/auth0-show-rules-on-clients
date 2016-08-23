@@ -13,16 +13,16 @@ and helps you to view relation between clients and rules.
 4. Click on `continue`
 5. Finally, click on `install`
 
-## Features (I may move to TODO some of them. They are target now)
-* View clients for each rule.
-* View rules for each client.
-* Clickable rule & client details in each view mode.
-* Filter, search rules and clients.
-* Export rules-clients table as a CSV file. 
+## Features
+* View rules for each client in multi-page view.
+* View rule code in a popup window with mouse hover.
+* Sort clients based on name and ID. 
+* Search and filter rules and clients.
+* Export table as a file in various forms like CSV, XLS, JSON, XML. 
+* Filter inactive rules.
 
 ## How It Works
-In [Auth0](https://auth0.com) dashboard, activated rules are applied on every client by default. However, it is quite
-reasonable to "apply some rules only to some of the clients" (whitelist). Implementing clientID or clientName based whitelist logic can make this possible. Extension assumes all or some of your rules have whitelist logic. By analysing your rules, extension can determine which rules are used for any client and show their relation via it's user interface. 
+In [Auth0](https://auth0.com) dashboard, activated rules are applied on every client by default. However, it is quite reasonable to "apply some rules only to some of the clients" (whitelist). Implementing clientID or clientName based whitelist logic can make this possible. Extension assumes all or some of your rules have whitelist logic. By analysing your rules, extension can determine which rules are used for any client and show their relation via it's user interface. 
 
 For the extension application to show relations properly, your rules must match any of the below patterns.
 
@@ -123,7 +123,7 @@ function (user, context, callback) {
 }
 ```
 
-Your whitelist rules should stick with patterns described in "How It Works" section. Note that, there are many other ways for comparing clientId/Name in Javascript, but unsupported formats will cause the extension not to detect the whitelist rule. 
+Your whitelist rules should stick with patterns described in <b>How It Works</b> section. Note that, there are many other ways for comparing clientId/Name in Javascript, but unsupported formats will cause the extension not to detect the whitelist rule. 
 
 ```javascript
 function (user, context, callback) {
@@ -149,12 +149,11 @@ function (user, ctx, callback) {
 }
 ``` 
 
-## Development
-Fork the project in your GitHub account. Install <b>Node.js</b> and <b>npm</b>. Installation steps differ 
-according to your operating system. After that, follow the steps for local and remote tests as below.
+## Development Setup
+Fork the project in your GitHub account. Install <b>Node.js</b> and <b>npm</b>. Installation steps may change according to your operating system. After that follow the steps for local and remote tests as below.
 
 ### Local tests
-* Copy sample_config.json as config.json in the same folder. Update AUTH0_DOMAIN setting in config.json with your domain path. It may be something like YourUserName.auth0.com Note that based on your account location auth0.com may not work for you. 
+* Copy sample_config.json as config.json in the same folder. Update AUTH0_DOMAIN setting in config.json with your domain information. You can find your domain information in [Clients]( https://manage.auth0.com/#/applications) section of your management dashboard.
 
 ```bash
      $ cp sample_config.json config.json
@@ -167,6 +166,7 @@ according to your operating system. After that, follow the steps for local and r
 * Build and run the application
 
 ```bash
+    $ npm run client
     $ npm start
 ```
 ### Remote tests
@@ -174,12 +174,16 @@ according to your operating system. After that, follow the steps for local and r
 * Build the application
 
 ```bash
+    $ npm run client
     $ npm run bundle
 ```
 
 * Deploy the application
 
 Commit your changes to your GitHub account. Run your extension following <b>Deploy the Extension</b> section above.
+
+## Architecture
+FILL - TODO
 
 ## TODO
 * Dynamically evaluate rule's code with some clever algorithm to detect behaviour. So that mixture of whitelist, 

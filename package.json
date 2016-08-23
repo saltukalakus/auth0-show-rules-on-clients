@@ -4,8 +4,9 @@
   "description": "This extension helps to list rules on clients",
   "main": "index.js",
   "scripts": {
-    "start": "cd ./client && npm run bundle && cd ../ && webpack --config webpack.config.js && node build/local.js",
-    "bundle": "cd ./client && npm run bundle && cd ../ && webpack --config webpack.wt.config.js"
+    "client": "cd ./client && npm run bundle && sync && cd ../",
+    "start": "webpack --config webpack.config.js && node build/local.js",
+    "bundle": "webpack --config webpack.wt.config.js"
   },
   "keywords": [
     "auth0",

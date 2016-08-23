@@ -13,6 +13,7 @@ html
 
     link(rel='stylesheet', type='text/css', href='https://cdn.auth0.com/manage/v0.3.973/css/index.min.css')
     link(rel='stylesheet', type='text/css', href="https://cdn.auth0.com/styleguide/3.1.6/index.css")
+    link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css')
 
     script(type='text/javascript', src='https://code.jquery.com/jquery-2.1.4.min.js')
     script(type='text/javascript', src='https://fb.me/react-0.14.0.min.js')
@@ -20,6 +21,8 @@ html
     script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js')
     script(type='text/javascript', src='https://cdn.auth0.com/js/jwt-decode-1.4.0.min.js')
     script(type='text/javascript', src='https://cdn.auth0.com/js/navbar-1.0.1.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js')
+
     script
       include ../build/app.js
 
@@ -51,10 +54,10 @@ html
               .col-xs-12.content-header
                 ol.breadcrumb
                   li
-                    a(href='http://manage.auth0.com/') Auth0 Dashboard
+                    a(href='https://manage.auth0.com/') Auth0 Dashboard
                   li
-                    a(href='#') Extensions
-                h3 <p> Extension Secrets </p> <p> #{windowConfig} </p>
+                    a(href='https://manage.auth0.com/#/extensions') Extensions
+                h3
 
             #extension
               block content
