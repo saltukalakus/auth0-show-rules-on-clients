@@ -22,23 +22,26 @@ and helps you to view relation between clients and rules.
 
 ## How It Works
 In [Auth0](https://auth0.com) dashboard, activated rules are applied on every client by default. However, it is quite
-reasonable to apply some rules only to some of the clients (whitelist). Implementing clientID or clientName based whitelist logic can make this possible. Extension assumes all or some of your rules have whitelist logic. By analysing your rules, extension can determine which rules are used for any client and show their relation via it's user interface. 
+reasonable to "apply some rules only to some of the clients" (whitelist). Implementing clientID or clientName based whitelist logic can make this possible. Extension assumes all or some of your rules have whitelist logic. By analysing your rules, extension can determine which rules are used for any client and show their relation via it's user interface. 
 
-For analysis below pattern matching rules are applied in extension. There are still many other alternative ways for comparing clienId/Name in Javascript. For extension application to show relations properly, your rules must match any of below paterns.
+For the extension application to show relations properly, your rules must match any of the below patterns.
 
-1. context.clientName|clientID === | !== | == | != 'expectedID|name'
-2. context['clientName|clientID'] === | !== | == | != 'expectedID|name'
-3. 'expectedID|name' === | !== | == | != context.clientName|clientID
-4. 'expectedID|name' === | !== | == | != context['clientName|clientID']
+1. context.clientName|clientID === | !== | == | != 'expectedID'|'name'
+2. context['clientName'|'clientID'] === | !== | == | != 'expectedID'|'name'
+3. 'expectedID'|'name' === | !== | == | != context.clientName|clientID
+4. 'expectedID'|'name' === | !== | == | != context['clientName'|'clientID']
 
-### Sample for valid whitelist rule. Skip code block if the client is not in whitelist
+(*) | symbol denotes alternative valid options. 
+(*) Space and double quotes are also supported in your whitelist expression.
+
+Sample for valid whitelist rule with skip code block if the client is not in whitelist.
 
 ```javascript
 function (user, context, callback) {
     if (context.clientName === 'Client1ToWhiteList') || 
        ('Client2ToWhiteList' === context.clientName) ||
        (context['clientName'] === 'Client3ToWhiteList') || 
-       (context.clientID === '3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B'){
+       (context.clientID === '3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B') {
        
         // Write rule logic in this block
     }
@@ -48,7 +51,7 @@ function (user, context, callback) {
 }
 ```
 
-### Sample for valid whitelist rule. Early return if the client is not in whitelist
+Sample for valid whitelist rule with early return if the client is not in whitelist.
 
 ```javascript
 function (user, context, callback) {
@@ -67,10 +70,27 @@ function (user, context, callback) {
 }
 ```
 
-## Limitations
-In any of your rules, if you have some kind of logic like "apply this rule if not these clients" (blacklist), extension will not be able to list the relations correctly for that rule. Also using comparison operators (==, ===, !=, !==) with clientId or clientName against existing clients is not allowed for other purposes. Because this will mix with whitelist rule checking of the extension and cause incorrect relation.   
+If you need to compare clientName or clientID against some client for other purposes you can do it with variable assignment method like below example. This comparison will be ignored by the extension.
 
-### Sample for blacklist
+```javascript
+function (user, context, callback) {
+  
+    // Do some rule checking
+    
+    // Checking ClientID with variable assignment will lead to extension to ignore the logic.
+    var myClientID =  3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B;
+      
+    if (context.clientID === myClientID) {
+        // Your specific rule logic for client 3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B
+    }
+    
+    // Do some more rule checking
+    callback(null, user, context);
+}
+
+## Limitations
+In your rules, if you have logic like "apply this rule if not these clients" (blacklist), this extension will not be able to list the relations correctly for that rules.   
+
 ```javascript
 function (user, context, callback) {
     if (context.clientName !== 'Client1ToBlackList') {
@@ -86,14 +106,14 @@ function (user, context, callback) {
     callback(null, user, context);
 }
 ```
+Using comparison operators (==, ===, !=, !==) with clientId or clientName against existing clients is not allowed other than whitelist rule checking. Because this will mix with whitelist rule checking of the extension and cause incorrect relation. 
 
-### Sample for invalid use of client info
 ```javascript
 function (user, context, callback) {
     // Do some rule checking
     
     if (context.clientName === 'Client2') {
-       // In Client2 do some additional checking. This is also not allowed! Extesion will 
+       // In Client2 do some additional checking. This is also not allowed! Extension will 
        // think that this rule is applied only to Client2. Actually it is running for all clients.
     }
     
@@ -101,6 +121,31 @@ function (user, context, callback) {
     callback(null, user, context);
 }
 ```
+
+Your whitelist rules should stick with patterns described in "How It Works" section. Note that, there are many other ways for comparing clientId/Name in Javascript, but unsupported formats will cause the extension not to detect the whitelist rule. 
+
+```javascript
+function (user, context, callback) {
+
+    // Checking ClientID with variable assignment will lead to extension to fail in matching
+    var myClientID =  3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B;
+    if (context.clientID === myClientID) {
+        // Your rule logic
+    }
+    // Do some more rule checking
+    callback(null, user, context);
+}
+
+function (user, ctx, callback) {
+
+    // Extension search for keyword 'context' but 'ctx' is used and this cause extension to fail in matching
+    if (ctx.clientName === 'Client2') {
+        // Your rule logic
+    }
+    // Do some more rule checking
+    callback(null, user, context);
+}
+``` 
 
 ## Development
 Fork the project in your GitHub account. Install <b>Node.js</b> and <b>npm</b>. Installation steps differ 
