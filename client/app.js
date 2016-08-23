@@ -1,3 +1,5 @@
+var view = require('./view/view.js');
+
 $(window).ready(function() {
     console.log('https://' + window.config.AUTH0_DOMAIN + '/api/v2/clients');
 
@@ -24,5 +26,6 @@ $(window).ready(function() {
         })).done(function (clients, rules) {
             console.log(clients);
             console.log(rules);
+            view(clients, rules, 'hi');
         });
 });

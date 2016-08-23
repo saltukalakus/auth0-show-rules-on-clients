@@ -11,12 +11,13 @@
   "scripts": {
     "bundle": "gulp build"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "browserify": "latest",
     "gulp": "latest",
     "gulp-browserify": "latest",
+    "gulp-define-module": "^0.1.4",
+    "gulp-handlebars": "^4.0.0",
     "gulp-minify": "0.0.14"
   },
   "repository": {

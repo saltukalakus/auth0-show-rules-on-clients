@@ -24,7 +24,7 @@ and helps you to view relation between clients and rules.
 In [Auth0](https://auth0.com) dashboard, activated rules are applied on every client by default. However, it is quite
 reasonable to apply some rules only to some of the clients (whitelist). Implementing clientID or clientName based whitelist logic can make this possible. Extension assumes all or some of your rules have whitelist logic. By analysing your rules, extension can determine which rules are used for any client and show their relation via it's user interface. 
 
-For analysis below patern matching rules are applied in extension. There are still many other alternative ways for comparing clienId/Name in Javascript. For extension application to show relations properly, your rules must match any of below paterns.
+For analysis below pattern matching rules are applied in extension. There are still many other alternative ways for comparing clienId/Name in Javascript. For extension application to show relations properly, your rules must match any of below paterns.
 
 1. context.clientName|clientID === | !== | == | != 'expectedID|name'
 2. context['clientName|clientID'] === | !== | == | != 'expectedID|name'

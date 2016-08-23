@@ -1,6 +1,15 @@
 var gulp = require('gulp');
 var browserify = require('gulp-browserify');
 var minify = require('gulp-minify');
+var handlebars = require('gulp-handlebars');
+var defineModule = require('gulp-define-module');
+
+gulp.task('template', function(){
+    gulp.src(['template/*.hbs'])
+        .pipe(handlebars())
+        .pipe(defineModule('node'))
+        .pipe(gulp.dest('build/template/'));
+});
 
 gulp.task('jsbuild', function() {
     gulp.src('./app.js')
@@ -22,5 +31,6 @@ gulp.task('compress', function() {
 });
 
 gulp.task('build',
-    ['jsbuild',
+    ['template',
+     'jsbuild',
      'compress']);

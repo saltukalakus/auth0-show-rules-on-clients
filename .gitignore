@@ -36,4 +36,4 @@ config.json
 build/app.js
 build/app-debug.js
 build/local.js
-client/build/app.js
+client/build/**/*
