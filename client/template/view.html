@@ -14,7 +14,12 @@
             <th>{{id}}</th>
             <th>
                 {{#rules}}
-                    <div><button type="button" onclick="onRuleButtonClick(this.id);" id="{{script}} {{#script}}disabled{{/script}}">{{name}}</button></div>
+                    <a data-toggle="tooltip" title={{#generic}}"Generic rule"{{/generic}}{{^generic}}"Whitelisted rule"{{/generic}}>
+                    <div><button type="button" {{^enabled}}disabled{{/enabled}}
+                        class="btn btn-disabled {{#generic}}btn btn-warning{{/generic}}{{^generic}}btn-info{{/generic}}"
+                        onclick="onRuleButtonClick(this.id);" id="{{script}}" >{{name}}
+                    </button></div>
+                    </a>
                 {{/rules}}
             </th>
         </tr>
