@@ -12,7 +12,11 @@
         <tr>
             <th>{{name}}</th>
             <th>{{id}}</th>
-            <th>{{id}}</th>
+            <th>
+                {{#rules}}
+                    <div><button type="button" onclick="onRuleButtonClick(this.id);" id="{{script}} {{#script}}disabled{{/script}}">{{name}}</button></div>
+                {{/rules}}
+            </th>
         </tr>
     {{/clients}}
 

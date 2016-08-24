@@ -22,10 +22,11 @@ module.exports = function(clients, rules) {
                 // We found at least one match which means this is a client specific rule.
                 anyMatch = true;
 
-                // Script is not pushed to keep the array light
                 table[client].rules.push( {'enabled': rules[rule].enabled,
                     'id': rules[rule].id,
-                    'name': rules[rule].name })
+                    'name': rules[rule].name,
+                    'script': rules[rule].script
+                })
             }
         }
 
@@ -34,7 +35,10 @@ module.exports = function(clients, rules) {
             for (var client in clients) {
                 table[client].rules.push({'enabled': rules[rule].enabled,
                     'id': rules[rule].id,
-                    'name': rules[rule].name })
+                    'name': rules[rule].name,
+                    'script': rules[rule].script
+
+                })
             }
         }
     }

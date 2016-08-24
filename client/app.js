@@ -1,7 +1,6 @@
 var view = require('./view/view.js');
 
 $(window).ready(function() {
-    console.log('https://' + window.config.AUTH0_DOMAIN + '/api/v2/clients');
 
     $.when(
         $.ajax

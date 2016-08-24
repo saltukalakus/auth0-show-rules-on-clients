@@ -15,11 +15,9 @@ and helps you to view relation between clients and rules.
 
 ## Features
 * View rules for each client in multi-page view.
-* View rule code in a popup window with mouse hover.
+* View rule code in model view with click.
 * Sort clients based on name and ID. 
 * Search and filter rules and clients.
-* Export table as a file in various forms like CSV, XLS, JSON, XML. 
-* Filter inactive rules.
 
 ## How It Works
 In [Auth0](https://auth0.com) dashboard, activated rules are applied on every client by default. However, it is quite reasonable to "apply some rules only to some of the clients" (whitelist). Implementing clientID or clientName based whitelist logic can make this possible. Extension assumes all or some of your rules have whitelist logic. By analysing your rules, extension can determine which rules are used for any client and show their relation via it's user interface. 
@@ -181,9 +179,6 @@ Fork the project in your GitHub account. Install <b>Node.js</b> and <b>npm</b>. 
 * Deploy the application
 
 Commit your changes to your GitHub account. Run your extension following <b>Deploy the Extension</b> section above.
-
-## Architecture
-FILL - TODO - Gulph handlebar step details. Due to body size limit issue..etc.
 
 ## TODO
 * Dynamically evaluate rule's code with some clever algorithm to detect behaviour. So that mixture of whitelist, 

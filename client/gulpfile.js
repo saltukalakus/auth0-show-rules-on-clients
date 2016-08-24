@@ -9,7 +9,6 @@ gulp.task('template', function() {
     gulp.src('template/*.html')
         .pipe(hoganCompiler())
         .pipe(defineModule('node'))
-        .pipe(concat('view.js'))
         .pipe(gulp.dest('build/template/'));
 });
 
