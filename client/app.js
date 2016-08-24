@@ -1,7 +1,6 @@
 var view = require('./view/view.js');
 
 $(window).ready(function() {
-
     $.when(
         $.ajax
         ({

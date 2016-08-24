@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "client": "cd ./client && npm run bundle && sync && cd ../",
-    "start": "webpack --config webpack.config.js && node build/local.js",
+    "start": "webpack --config webpack.config.js && node build/local-bundle.js",
     "bundle": "webpack --config webpack.wt.config.js"
   },
   "keywords": [

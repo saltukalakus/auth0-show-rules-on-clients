@@ -2,13 +2,11 @@ var viewTemplate = require('../build/template/view.js');
 var tableGenerator = require('../middleware/generator');
 
 window.onRuleButtonClick = function(code){
-    alert(code);
-    console.log("initial");
-    console.log(code);
-    var a = hljs.highlightBlock(code);
-    console.log("higligted");
-    console.log(a);
-    //bootbox.alert(code);
+    var codeHtml = '<pre><code class="javascript">' + code +'</code></pre>'
+    bootbox.alert(codeHtml);
+    $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
 }
 
 module.exports = function(clients, rules, divItem) {

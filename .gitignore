@@ -35,5 +35,5 @@ npm-debug.log
 config.json
 build/app.js
 build/app-debug.js
-build/local.js
+build/local-bundle.js
 client/build/**/*
