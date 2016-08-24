@@ -1,13 +1,15 @@
 var gulp = require('gulp');
 var browserify = require('gulp-browserify');
 var minify = require('gulp-minify');
-var handlebars = require('gulp-handlebars');
 var defineModule = require('gulp-define-module');
+var hoganCompiler = require('gulp-hogan-precompile');
+var concat = require('gulp-concat');
 
-gulp.task('template', function(){
-    gulp.src(['template/*.hbs'])
-        .pipe(handlebars())
+gulp.task('template', function() {
+    gulp.src('template/*.html')
+        .pipe(hoganCompiler())
         .pipe(defineModule('node'))
+        .pipe(concat('view.js'))
         .pipe(gulp.dest('build/template/'));
 });
 
@@ -31,5 +33,6 @@ gulp.task('compress', function() {
 });
 
 gulp.task('build',
-    ['jsbuild',
+    ['template',
+     'jsbuild',
      'compress']);

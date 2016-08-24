@@ -1,37 +1,15 @@
-viewTemplate = require('../build/template/view.js');
-
+var viewTemplate = require('../build/template/view.js');
+var tableGenerator = require('../middleware/generator');
 
 module.exports = function(clients, rules, divItem) {
-    var context = {title: 'saltuk'};
-    var html = viewTemplate(context);
-    console.dir(clients);
-    console.dir(rules);
+    var table = tableGenerator(clients, rules);
+    console.log(table);
+
+    var html = viewTemplate.render({'clients': table});
+    console.log(html);
     $(divItem).html(html);
 
-    var data = [
-        {
-            "name": "bootstrap-table",
-            "id": "526",
-            "rules": "122"
-        },
-        {
-            "name": "multiple-select",
-            "id": "288",
-            "rules": "150"
-        },
-        {
-            "name": "bootstrap-show-password",
-            "id": "32",
-            "rules": "11"
-        },
-        {
-            "name": "blog",
-            "id": "13",
-            "rules": "4"
-        }
-    ];
-
-    $('#table').bootstrapTable({
-        data: data
-    });
+    $(document).ready(function() {
+        $('#table').DataTable();
+    } );
 };

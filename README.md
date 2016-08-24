@@ -183,7 +183,7 @@ Fork the project in your GitHub account. Install <b>Node.js</b> and <b>npm</b>. 
 Commit your changes to your GitHub account. Run your extension following <b>Deploy the Extension</b> section above.
 
 ## Architecture
-FILL - TODO
+FILL - TODO - Gulph handlebar step details. Due to body size limit issue..etc.
 
 ## TODO
 * Dynamically evaluate rule's code with some clever algorithm to detect behaviour. So that mixture of whitelist, 

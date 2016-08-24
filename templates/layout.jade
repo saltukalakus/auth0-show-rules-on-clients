@@ -13,7 +13,8 @@ html
 
     link(rel='stylesheet', type='text/css', href='https://cdn.auth0.com/manage/v0.3.973/css/index.min.css')
     link(rel='stylesheet', type='text/css', href="https://cdn.auth0.com/styleguide/3.1.6/index.css")
-    link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css')
+    link(rel='stylesheet', type='text/css', href='https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css')
+    link(rel='stylesheet', type='text/css', href='https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css')
 
     script(type='text/javascript', src='https://code.jquery.com/jquery-2.1.4.min.js')
     script(type='text/javascript', src='https://fb.me/react-0.14.0.min.js')
@@ -21,11 +22,11 @@ html
     script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js')
     script(type='text/javascript', src='https://cdn.auth0.com/js/jwt-decode-1.4.0.min.js')
     script(type='text/javascript', src='https://cdn.auth0.com/js/navbar-1.0.1.min.js')
-    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js')
+    script(type='text/javascript', src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js')
     script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js')
 
     script
-      include ../build/app.js
+      include ../client/build/app.js
 
     script(type='text/javascript').
       if (!sessionStorage.getItem("token")) {

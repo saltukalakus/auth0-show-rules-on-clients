@@ -1,6 +1,6 @@
 {
   "name": "auth0-list-rules-on-clients-fe",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Frontend application for list rules on clients extension",
   "keywords": [
     "auth0",
@@ -16,8 +16,9 @@
     "browserify": "latest",
     "gulp": "latest",
     "gulp-browserify": "latest",
+    "gulp-concat": "^2.6.0",
     "gulp-define-module": "^0.1.4",
-    "gulp-handlebars": "^4.0.0",
+    "gulp-hogan-precompile": "^0.1.1",
     "gulp-minify": "0.0.14"
   },
   "repository": {
