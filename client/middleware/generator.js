@@ -43,6 +43,6 @@ module.exports = function(clients, rules) {
             }
         }
     }
-    // Return the array of client [id, name, array of matching rule [id, name, state] ]
+    // Return the array of client [id, name, array of matching rule [id, name, enabled, script, generic] ]
     return table;
 }
