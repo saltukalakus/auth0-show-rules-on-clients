@@ -25,5 +25,8 @@ $(window).ready(function() {
             }
         })).done(function (clients, rules) {
             view(clients[0], rules[0], '#listView');
+        }).fail(function (jqXHR, status) {
+            sessionStorage.removeItem('token');
+            bootbox.alert(status);
         });
 });
