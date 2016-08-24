@@ -31,6 +31,5 @@ gulp.task('compress', function() {
 });
 
 gulp.task('build',
-    ['template',
-     'jsbuild',
+    ['jsbuild',
      'compress']);
