@@ -4,6 +4,15 @@ var minify = require('gulp-minify');
 var defineModule = require('gulp-define-module');
 var hoganCompiler = require('gulp-hogan-precompile');
 var concat = require('gulp-concat');
+var tape = require('gulp-tape');
+var tapColorize = require('tap-colorize');
+
+gulp.task('test', function() {
+    return gulp.src('tests/*.js')
+        .pipe(tape({
+            reporter: tapColorize()
+        }));
+});
 
 gulp.task('template', function() {
     gulp.src('template/*.html')
@@ -34,4 +43,5 @@ gulp.task('compress', function() {
 gulp.task('build',
     ['template',
      'jsbuild',
+     'test',
      'compress']);

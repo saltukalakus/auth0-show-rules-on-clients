@@ -16,8 +16,8 @@ module.exports = function(clients, rules) {
             table[client].name = table[client].name || clients[client].name;
             table[client].rules = table[client].rules || [];
 
-            // Is client id or client name found in current rule script?
-            if (isFound(rules[rule].script, table[client].id, table[client].name)) {
+            // Is client id or client name in current rule script?
+            if (isFound(rules[rule].script, table[client])) {
 
                 // We found at least one match which means this is a client specific rule.
                 anyMatch = true;

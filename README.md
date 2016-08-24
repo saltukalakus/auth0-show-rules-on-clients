@@ -6,7 +6,7 @@ and helps you to view relation between clients and rules.
 
 [PUT PICTURE HERE]
 
-## Deploy the Extension
+## Try the Extension
 1. Go to [Auth0 Extensions](https://manage.auth0.com/#/extensions)
 2. Click on `+ Create Extension`
 3. Fill in the textbox with `https://github.com/saltukalakus/auth0-list-rules-on-clients`
@@ -14,10 +14,10 @@ and helps you to view relation between clients and rules.
 5. Finally, click on `install`
 
 ## Features
-* View rules for each client in multi-page view.
-* View rule code in model view with click.
-* Sort clients based on name and ID. 
-* Search and filter rules and clients.
+* View rules for each client.
+* View rule's code in builtin Javascript code reader screen.
+* Sort clients based on client name, ID and rule. 
+* Search rules and clients.
 
 ## How It Works
 In [Auth0](https://auth0.com) dashboard, activated rules are applied on every client by default. However, it is quite reasonable to "apply some rules only to some of the clients" (whitelist). Implementing clientID or clientName based whitelist logic can make this possible. Extension assumes all or some of your rules have whitelist logic. By analysing your rules, extension can determine which rules are used for any client and show their relation via it's user interface. 
@@ -178,11 +178,17 @@ Fork the project in your GitHub account. Install <b>Node.js</b> and <b>npm</b>. 
 
 * Deploy the application
 
-Commit your changes to your GitHub account. Run your extension following <b>Deploy the Extension</b> section above.
+Commit your changes to your GitHub account. Run your extension with your project's GitHub link following the <b>Deploy the Extension</b> section above.
 
-## TODO
-* Dynamically evaluate rule's code with some clever algorithm to detect behaviour. So that mixture of whitelist, 
-blacklist logics can be handled without limitation.
+## Developer Notes
+Backend part of the application is mostly a reuse of [auth0-extension-boilerplate-with-react](https://github.com/saltukalakus/auth0-extension-boilerplate-with-react) project. Backend code helps to authenticate with Auth0 servers with required privileges (read access to client and rule API) and receive API token and API endpoint. Backend passes this information to frontend application. <b>[Frontend application](https://github.com/saltukalakus/auth0-list-rules-on-clients/tree/master/client)</b> makes the API calls, analyze the received data and produce the list view. 
+
+[Hogan.js](http://twitter.github.io/hogan.js/) is used in frontend application to generate dynamic Html. [Gulp.js](http://gulpjs.com/) is used to automate precompiling stage of Hogan templates into javascript and with the help of [Browserify](http://browserify.org/) templates are merged into a single frontend application file. Application file is inserted into html page via [Jade](http://jade-lang.com/) in backend and later packaged as a bundle with [Webpack](https://webpack.github.io/).
+
+Frontend logic is tested against alternative rules in this [directory](https://github.com/saltukalakus/auth0-list-rules-on-clients/tree/master/client/tests). [Tape]( https://github.com/substack/tape) test framework is used in tests.
+
+## Todo
+* Dynamically evaluate rule's code with some clever algorithm to detect behaviour. So that whitelist and blacklist logic can be used together without limitation.
 
 ## People
 [R. Saltuk Alakus](https://github.com/saltukalakus)
