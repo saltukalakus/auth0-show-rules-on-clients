@@ -11,6 +11,7 @@ test("Double quota clientID", function(t) {
     t.ok(isFound( content, client), 'Double quota clientID');
 });
 
+/*
 test("Single quota clientName", function(t) {
     t.plan(1);
     var client = {id:'3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B', 'name': 'Default App'};
@@ -35,3 +36,4 @@ test("Malformed but valid comparison for ClientName", function(t) {
     var content = fs.readFileSync(filename, "utf8");
     t.ok(isFound( content, client), 'Malformed but valid comparison for ClientName');
 });
+*/
