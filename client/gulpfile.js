@@ -43,4 +43,5 @@ gulp.task('compress', function() {
 gulp.task('build',
     ['template',
      'jsbuild',
+     'test',
      'compress']);
