@@ -1,8 +1,6 @@
 ## Auth0 Extension to List Rules on Clients
 
-If you are already using [Auth0](https://auth0.com) services, you should be familiar with [Auth0](https://auth0.com)'s 
-management dashboard, clients (A.K.A. applications) and rules. This little extensions extends the management dashboard 
-and helps you to view relation between clients and rules.
+If you are already using [Auth0](https://auth0.com) services, you should be familiar with Auth0's management dashboard, clients (A.K.A. applications) and rules concepts. This little extension extends the management dashboard and helps you to view relation between clients and rules in more depth.
 
 ![ScreenShot](https://github.com/saltukalakus/auth0-list-rules-on-clients/blob/master/doc/ListRules.png)
 
@@ -14,13 +12,15 @@ and helps you to view relation between clients and rules.
 5. Finally, click on `install`
 
 ## Features
-* View rules for each client.
-* View rule's code in builtin Javascript code reader screen.
-* Sort clients based on client name, ID and rule. 
-* Search rules and clients.
+* View rules for every client.
+* View rule's details in builtin Javascript code reader screen.
+* Sort clients based on client name and rule. 
+* Search and filter rules and clients.
 
 ## How It Works
-In [Auth0](https://auth0.com) dashboard, activated rules are applied on every client by default. However, it is quite reasonable to "apply some rules only to some of the clients" (whitelist). Implementing clientID or clientName based whitelist logic can make this possible. Extension assumes all or some of your rules have whitelist logic. By analysing your rules, extension can determine which rules are used for any client and show their relation via it's user interface. 
+In [Auth0 dashboard](https://manage.auth0.com) activated rules are applied on every client by default. However, it is reasonable to <b>apply some of the rules only to some of the whitelisted clients</b>. Writing clientID or clientName based whitelist logic in rules section of dasboard can make this possible. 
+
+This extension fetches your client and rule list details via Auth0's management API. By analysing your rules, extension can determine which rules are used for any client and show the relation via a simple but effective user interface. 
 
 For the extension application to show relations properly, your rules must match any of the below patterns.
 
