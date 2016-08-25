@@ -18,7 +18,7 @@ If you are already using [Auth0](https://auth0.com) services, you should be fami
 * Search and filter rules and clients.
 
 ## How It Works
-In [Auth0 dashboard](https://manage.auth0.com) activated rules are applied on every client by default. However, it is reasonable to <b>apply some of the rules only to some of the whitelisted clients</b>. Writing clientID or clientName based whitelist logic in rules section of dasboard can make this possible. 
+In [Auth0 dashboard](https://manage.auth0.com) activated rules are applied on every client by default. However, it is reasonable to <b>apply some of the rules only to some of the whitelisted clients</b>. Writing clientID or clientName based whitelist logic in rules section of dashboard can make this possible. 
 
 This extension fetches your client and rule list details via Auth0's management API. By analysing your rules, extension can determine which rules are used for any client and show the relation via a simple but effective user interface. 
 
