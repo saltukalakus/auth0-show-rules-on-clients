@@ -24,7 +24,7 @@ module.exports = function() {
                 xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
             }
         })).done(function (clients, rules) {
-            view(clients[0], rules[0], '#listView');
+            view(clients[0], rules[0]);
             $('#spinView').spin(false);
         }).fail(function (jqXHR, status) {
             sessionStorage.removeItem('token');
