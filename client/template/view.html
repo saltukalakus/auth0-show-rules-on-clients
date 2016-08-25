@@ -2,7 +2,6 @@
     <thead>
     <tr>
         <th data-field="name">Client Name</th>
-        <th data-field="id" >Client ID</th>
         <th data-field="rules">Rules</th>
     </tr>
     </thead>
@@ -11,7 +10,6 @@
     {{#clients}}
         <tr>
             <th>{{name}}</th>
-            <th>{{id}}</th>
             <th>
                 {{#rules}}
                     <a data-toggle="tooltip" title={{#generic}}"Generic rule"{{/generic}}{{^generic}}"Whitelisted rule"{{/generic}}>

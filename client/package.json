@@ -9,7 +9,8 @@
   "author": "Saltuk Alakus <saltukalakus@gmail.com>",
   "main": "app.js",
   "scripts": {
-    "bundle": "gulp build"
+    "bundle": "gulp build",
+    "test": "gulp test"
   },
   "dependencies": {
     "micromatch": "^2.3.11"

@@ -1,9 +1,15 @@
 var viewTemplate = require('../build/template/view.js');
-var tableGenerator = require('../middleware/generator');
+var tableGenerator = require('../controller/generator');
 
 window.onRuleButtonClick = function(code){
     var codeHtml = '<pre><code class="javascript">' + code +'</code></pre>'
-    bootbox.alert(codeHtml);
+
+    bootbox.alert({
+        size: 'large',
+        message: codeHtml,
+        callback: function(){}
+    });
+
     $('pre code').each(function(i, block) {
         hljs.highlightBlock(block);
     });

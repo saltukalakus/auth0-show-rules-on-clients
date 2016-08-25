@@ -1,5 +1,5 @@
 var test = require('tape');
-var isFound = require('../middleware/match.js');
+var isFound = require('../utils/match.js');
 var fs = require('fs');
 var path = require('path');
 

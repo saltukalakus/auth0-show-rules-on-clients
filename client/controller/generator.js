@@ -1,4 +1,4 @@
-var isFound = require('./match.js');
+var isFound = require('../utils/match.js');
 
 module.exports = function(clients, rules) {
     var table = [];
