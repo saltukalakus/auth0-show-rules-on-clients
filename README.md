@@ -4,7 +4,7 @@ If you are already using [Auth0](https://auth0.com) services, you should be fami
 management dashboard, clients (A.K.A. applications) and rules. This little extensions extends the management dashboard 
 and helps you to view relation between clients and rules.
 
-![ScreenShot](https://github.com/saltukalakus/auth0-list-rules-on-clients/blob/master/doc/ListRule.png)
+![ScreenShot](https://github.com/saltukalakus/auth0-list-rules-on-clients/blob/master/doc/ListRules.png)
 
 ## Try the Extension
 1. Go to [Auth0 Extensions](https://manage.auth0.com/#/extensions)
