@@ -29,6 +29,6 @@ module.exports = function() {
         }).fail(function (jqXHR, status) {
             sessionStorage.removeItem('token');
             $('#spinView').spin(false);
-            bootbox.alert(status);
+            console.log(status);
         });
 }
