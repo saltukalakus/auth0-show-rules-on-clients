@@ -88,13 +88,13 @@ function (user, context, callback) {
 ```
 
 ## Limitations
-In your rules, if you have logic like "apply this rule if not these clients" (blacklist), this extension will not be able to list the relations correctly for that rules.   
+If you have rules <b>applied on all clients other than a few blacklisted ones</b>, for that particular rules, extension will not be able to list the relations correctly.   
 
 ```javascript
 function (user, context, callback) {
     if (context.clientName !== 'Client1ToBlackList') {
-        // Writing rule logic after this line literally means apply rule to all clients 
-        // other than Client1ToBlackList. Extension will think that this rule is applied
+        // Writing rule logic after this line literally means, apply the rule to all clients 
+        // other than Client1ToBlackList. However, extension will incorrectly think that this rule is applied
         // only to Client1ToBlackList
         
         return callback(null, user, context);
@@ -105,7 +105,7 @@ function (user, context, callback) {
     callback(null, user, context);
 }
 ```
-Using comparison operators (==, ===, !=, !==) with clientId or clientName against existing clients is not allowed other than whitelist rule checking. Because this will mix with whitelist rule checking of the extension and cause incorrect relation. 
+Using comparison operators (==, ===, !=, !==) with clientId or clientName against existing clients is not allowed other than whitelist type rule checking. Because this will mix with whitelist rule checking and cause incorrect relation. 
 
 ```javascript
 function (user, context, callback) {
@@ -182,12 +182,12 @@ Fork the project in your GitHub account. Install <b>Node.js</b> and <b>npm</b>. 
 
 * Deploy the application
 
-Commit your changes to your GitHub account. Run your extension with your project's GitHub link following the <b>Deploy the Extension</b> section above.
+Commit your changes to your GitHub account. Run your extension with your project's GitHub link following the <b>Try the Extension</b> section above.
 
 ## Developer Notes
-Backend part of the application is mostly a reuse of [auth0-extension-boilerplate-with-react](https://github.com/saltukalakus/auth0-extension-boilerplate-with-react) project. Backend code helps to authenticate with Auth0 servers with required privileges (read access to client and rule API) and receive API token and API endpoint. Backend passes this information to frontend application. <b>[Frontend application](https://github.com/saltukalakus/auth0-list-rules-on-clients/tree/master/client)</b> makes the API calls, analyze the received data and produce the list view. 
+Backend part of the application is mostly a reuse of [auth0-extension-boilerplate-with-react](https://github.com/saltukalakus/auth0-extension-boilerplate-with-react) project. Backend code helps to authenticate with Auth0 servers with required privileges (read access to client and rule API) and receive API token and API endpoint. Backend passes this information to frontend application. <b>[Frontend application](https://github.com/saltukalakus/auth0-list-rules-on-clients/tree/master/client)</b> makes the API calls, analyzes the received data and produces the list view. 
 
-[Hogan.js](http://twitter.github.io/hogan.js/) is used in frontend application to generate dynamic Html. [Gulp.js](http://gulpjs.com/) is used to automate precompiling stage of Hogan templates into javascript and with the help of [Browserify](http://browserify.org/) templates are merged into a single frontend application file. Application file is inserted into html page via [Jade](http://jade-lang.com/) in backend and later packaged as a bundle with [Webpack](https://webpack.github.io/).
+[Hogan.js](http://twitter.github.io/hogan.js/) is used in frontend application to generate dynamic Html. [Gulp.js](http://gulpjs.com/) is used to automate precompiling stage of Hogan templates into Javascript. With the help of [Browserify](http://browserify.org/) precompiled template file is merged into a single frontend application file. Later application file is inserted into html page via [Jade](http://jade-lang.com/) in backend code and later packaged as a bundle with [Webpack](https://webpack.github.io/).
 
 Frontend logic is tested against alternative rules in this [directory](https://github.com/saltukalakus/auth0-list-rules-on-clients/tree/master/client/tests). [Tape]( https://github.com/substack/tape) test framework is used in tests.
 
@@ -197,7 +197,7 @@ Frontend logic is tested against alternative rules in this [directory](https://g
 ```
 
 ## Todo
-* Dynamically evaluate rule's code with some clever algorithm to detect behaviour. So that whitelist and blacklist logic can be used together without limitation.
+* Dynamically evaluate rule's code with some clever algorithm to detect behaviour. So that whitelist and blacklist logic can be used together without limitation in rules.
 
 ## People
 [R. Saltuk Alakus](https://github.com/saltukalakus)
