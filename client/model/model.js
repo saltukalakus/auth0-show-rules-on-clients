@@ -1,6 +1,7 @@
 var view = require('../view/view.js');
 
 module.exports = function() {
+    $('#spinView').spin();
     $.when(
         $.ajax
         ({
@@ -24,8 +25,10 @@ module.exports = function() {
             }
         })).done(function (clients, rules) {
             view(clients[0], rules[0], '#listView');
+            $('#spinView').spin(false);
         }).fail(function (jqXHR, status) {
             sessionStorage.removeItem('token');
+            $('#spinView').spin(false);
             bootbox.alert(status);
         });
 }
