@@ -15,22 +15,22 @@ gulp.task('test', function() {
 });
 
 gulp.task('template', function() {
-    gulp.src('template/*.html')
+    return gulp.src('template/*.html')
         .pipe(hoganCompiler())
         .pipe(defineModule('node'))
         .pipe(gulp.dest('build/template/'));
 });
 
-gulp.task('jsbuild', function() {
-    gulp.src('./app.js')
+gulp.task('jsbuild', ['template'], function() {
+    return gulp.src('./app.js')
         .pipe(browserify({
             insertGlobals : true
         }))
         .pipe(gulp.dest('./build/'))
 });
 
-gulp.task('compress', function() {
-    gulp.src('./build/app.js')
+gulp.task('compress', ['jsbuild'], function() {
+    return gulp.src('./build/app.js')
         .pipe(minify({
             ext:{
                 src:'-debug.js',
@@ -41,6 +41,7 @@ gulp.task('compress', function() {
 });
 
 gulp.task('build',
-    ['template',
-     'jsbuild',
-     'compress']);
+    ['compress',
+    'jsbuild',
+    'template',
+    'test']);

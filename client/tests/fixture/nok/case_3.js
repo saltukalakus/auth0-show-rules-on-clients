@@ -1,8 +1,8 @@
 function (user, context, callback) {
 
     // Multiple clients single quote with OR logic should not match test
-    if(context.clientID !== "3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5BSHOULDNOTMATCH" ||
-        context.clientID !== "3wgXJTZpOPobwfQl8EeAHPsxY6556666"  ){
+    if(context.clientID !== '3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5BSHOULDNOTMATCH' ||
+        context.clientID !== '3wgXJTZpOPobwfQl8EeAHPsxY6556666'  ){
         return callback(null, user, context);
     }
 
