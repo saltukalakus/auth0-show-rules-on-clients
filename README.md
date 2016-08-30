@@ -24,15 +24,15 @@ This extension fetches your client and rule list details via Auth0's management 
 
 For the extension application to show relations properly, your rules must match any of the below patterns.
 
-1. context.clientName|clientID === | !== | == | != 'expectedID'|'name'
-2. context['clientName'|'clientID'] === | !== | == | != 'expectedID'|'name'
-3. 'expectedID'|'name' === | !== | == | != context.clientName|clientID
-4. 'expectedID'|'name' === | !== | == | != context['clientName'|'clientID']
+1. context.clientName|clientID === | !== | == | != 'expectedName'|'expectedID'
+2. context['clientName'|'clientID'] === | !== | == | != 'expectedName'|'expectedID'
+3. 'expectedID'|'expectedName' === | !== | == | != context.clientID|clientName
+4. 'expectedID'|'expectedName' === | !== | == | != context['clientID'|'clientName']
 
 (\*) <b>|</b> symbol denotes alternative valid options. <br>
 (\*) Space and double quotes are also supported in your whitelist expressions.
 
-Sample for valid whitelist rule with skip code block if the client is not in whitelist.
+Sample for valid whitelist rule with skipped code block if the client is not in whitelist.
 
 ```javascript
 function (user, context, callback) {
@@ -55,10 +55,10 @@ Sample for valid whitelist rule with early return if the client is not in whitel
 function (user, context, callback) {
     if (context.clientName !== 'Client1ToWhiteList') && 
        ('Client2ToWhiteList' !== context.clientName) &&
-       (context["clientName"] === 'Client3ToWhiteList') &&
+       (context["clientName"] !== 'Client3ToWhiteList') &&
        (context.clientID !== '3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B') {
        
-        // Returns without any rule action  
+        // Rule function returns without any action  
         return callback(null, user, context);
     }
     
@@ -73,7 +73,7 @@ If you need to compare clientName or clientID against some client for other purp
 ```javascript
 function (user, context, callback) {
   
-    // Do some rule checking
+    // Rule code added here
     
     // Checking ClientID with variable assignment will lead to extension to ignore the logic.
     var myClientID =  '3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B';
@@ -82,7 +82,8 @@ function (user, context, callback) {
         // Your specific rule logic for client '3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B'
     }
     
-    // Do some more rule checking
+    // Some more rule code added here
+
     callback(null, user, context);
 }
 ```
@@ -94,13 +95,11 @@ If you have rules <b>applied on all clients other than a few blacklisted ones</b
 function (user, context, callback) {
     if (context.clientName !== 'Client1ToBlackList') {
         // Writing rule logic after this line literally means, apply the rule to all clients 
-        // other than Client1ToBlackList. However, extension will incorrectly think that this rule is applied
-        // only to Client1ToBlackList
+        // other than Client1ToBlackList. Extension will incorrectly think that this rule 
+        // is applied only to client with name 'Client1ToBlackList' 
         
         return callback(null, user, context);
     }
-    
-    // Returns without any rule action 
     
     callback(null, user, context);
 }
@@ -109,14 +108,15 @@ Using comparison operators (==, ===, !=, !==) with clientId or clientName agains
 
 ```javascript
 function (user, context, callback) {
-    // Do some rule checking
-    
+ 
     if (context.clientName === 'Client2') {
-       // In Client2 do some additional checking. This is also not allowed! Extension will 
-       // think that this rule is applied only to Client2. Actually it is running for all clients.
+       // In Client2 do some additional checking. This is also not allowed! 
+       // Extension will think that this rule is applied only to Client2.
     }
     
-    // Do some more rule checking
+    // Some more rule code added here which runs for all clients but ignored 
+    // by this extension
+
     callback(null, user, context);
 }
 ```
@@ -129,9 +129,11 @@ function (user, context, callback) {
     // Checking ClientID with variable assignment will lead to extension to fail in matching
     var myClientID = '3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B';
     if (context.clientID === myClientID) {
-        // Your rule logic
+        
+        // Your rule logic specific to client with id '3wgXJTZpOPobwfQl8EeAHPsxYpKRdP5B'
+        return callback(null, user, context);
     }
-    // Do some more rule checking
+    
     callback(null, user, context);
 }
 
@@ -140,9 +142,10 @@ function (user, ctx, callback) {
     // Extension search for keyword 'context' but 'ctx' is used and this cause extension 
     // to fail in matching
     if (ctx.clientName === 'Client2') {
-        // Your rule logic
+        // Your rule logic specific to client 'Client2'
+        return callback(null, user, context);
     }
-    // Do some more rule checking
+
     callback(null, user, context);
 }
 ``` 
